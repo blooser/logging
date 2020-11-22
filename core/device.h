@@ -59,13 +59,16 @@ class Device : public DeviceData {
 template <>
 class Device<std::ostream> : public DeviceData {
 	public:
-		Device() : DeviceData("cout") {
+		Device(const std::ostream &os) : stream(os), DeviceData("cout") {
 			
 		}
 		
 		std::ostream& getStream(){
-			return std::cout;
+			return stream;
 		}
+
+	private:
+		std::ostream &stream;
 };
 
 }
