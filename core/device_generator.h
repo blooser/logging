@@ -1,13 +1,17 @@
+#ifndef DEVICE_GENERATOR_H
+#define DEVICE_GENERATOR_H
+
 #include "device.h"
 
 #include <type_traits>
+#include <ostream>
 
 namespace logging {
 
 template <typename Flow>	
 struct DeviceGenerator {
-	static Device<Flow>* generate(const std::string& location) {
-		return new Device<Flow>(location);
+	static Device<Flow>* generate(Flow flow) {
+		return new Device<Flow>(flow);
 	};
 
 };
@@ -20,3 +24,5 @@ struct DeviceGenerator<std::ostream> {
 };
 
 }
+
+#endif

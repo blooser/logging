@@ -1,3 +1,6 @@
+#ifndef LEVEL_H
+#define LEVEL_H
+
 #include <string>
 
 namespace logging {
@@ -13,3 +16,5 @@ enum class Level {
 std::string levelToStr(Level level);
 
 }
+
+#endif

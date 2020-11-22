@@ -1,4 +1,5 @@
 #include "logging.h"
+#include "device_generator.h"
 
 #define SEPARATOR "  -  "
 
@@ -15,7 +16,3 @@ logging::Devices& logging::devices() {
   return d; 
 }
 
-template <typename Flow>
-bool registerDevice(Flow flow) {
-  
-}

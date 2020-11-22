@@ -1,3 +1,6 @@
+#ifndef DEVICE_H
+#define DEVICE_H
+
 #include <iostream>
 #include <string>
 #include <type_traits>
@@ -66,3 +69,5 @@ class Device<std::ostream> : public DeviceData {
 };
 
 }
+
+#endif
