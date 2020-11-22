@@ -10,7 +10,7 @@ namespace logging {
 
 template <typename Flow>	
 struct DeviceGenerator {
-	static Device<Flow>* generate(Flow flow) {
+	static Device<Flow>* generate(const Flow& flow) {
 		return new Device<Flow>(flow);
 	};
 

@@ -24,11 +24,11 @@ class DeviceData {
 			return !(location == other.location);
 		}
 
-		inline void operator<<(const std::string &msg) {
+		inline void operator<<(const std::string& msg) {
 			getStream() << msg;
 		};
 
-		friend std::ostream& operator<<(std::ostream& os, const DeviceData &device) {
+		friend std::ostream& operator<<(std::ostream& os, const DeviceData& device) {
 			return os << "Device [" << device.location << "]";
 		}
 
