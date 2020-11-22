@@ -9,3 +9,13 @@ void logging::log(std::ostream &os, Level level, const char* msg) {
 std::string logging::buildMsg(Level level, const char *msg) {
   return logging::levelToStr(level) + SEPARATOR + msg;  
 }
+
+logging::Devices& logging::devices() {
+  static Devices d;
+  return d; 
+}
+
+template <typename Flow>
+bool registerDevice(Flow flow) {
+  
+}
