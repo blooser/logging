@@ -4,6 +4,8 @@ set (TEST_FILES
 	${PROJECT_SOURCE_DIR}/core/device.h
 	${PROJECT_SOURCE_DIR}/core/device.cc
 	${PROJECT_SOURCE_DIR}/core/device_generator.h
+	${PROJECT_SOURCE_DIR}/core/device_util.h
+	${PROJECT_SOURCE_DIR}/core/device_util.cc
 	${PROJECT_SOURCE_DIR}/core/level.h
 	${PROJECT_SOURCE_DIR}/core/level.cc
 )

@@ -1,6 +1,8 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
+#include "device_util.h"
+
 #include <iostream>
 #include <string>
 #include <type_traits>
@@ -59,7 +61,7 @@ class Device : public DeviceData {
 template <>
 class Device<std::ostream> : public DeviceData {
 	public:
-		Device(const std::ostream &os) : stream(os), DeviceData("cout") {
+		Device(std::ostream &os) : stream(os), DeviceData(ostreamDeviceName(os)) {
 			
 		}
 		

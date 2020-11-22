@@ -19,7 +19,7 @@ struct DeviceGenerator {
 template <>
 struct DeviceGenerator<std::ostream> {
 	static Device<std::ostream>* generate(const std::ostream& os) {
-		return new Device<std::ostream>();
+		return new Device<std::ostream>(const_cast<std::ostream&>(os));
 	}
 };
 

@@ -13,6 +13,8 @@ set (CORE_FILES
 	core/device.h
 	core/device.cc
 	core/device_generator.h
+	core/device_util.h
+	core/device_util.cc
 )
 
 enable_testing()
