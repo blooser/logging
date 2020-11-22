@@ -12,6 +12,7 @@ set (CORE_FILES
 	core/logging.cc
 	core/device.h
 	core/device.cc
+	core/device_generator.h
 )
 
 enable_testing()

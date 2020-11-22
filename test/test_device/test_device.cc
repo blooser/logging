@@ -23,5 +23,3 @@ BOOST_AUTO_TEST_CASE(test_device_transfer_data_to_cout) {
 	BOOST_CHECK(bool(std::cout));	
 }
 
-
-
