@@ -68,8 +68,6 @@ void unregisterDevices(const Flows&... flows) {
 	(unregisterDevice(flows), ...);
 }
 
-void unregisterAllDevices();
-
 void log(Level level, const char* msg);
 
 std::string buildMsg(Level level, const char* msg);

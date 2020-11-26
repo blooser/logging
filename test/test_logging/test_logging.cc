@@ -16,7 +16,7 @@ struct FileFixture {
 	const std::string FILE_NAME = "log_test.txt";
 
 	~FileFixture() {
-		unregisterAllDevices();	
+		unregisterDevices();	
 		if (fs::exists(FILE_NAME)) {
 			BOOST_TEST_MESSAGE("Removing: " + FILE_NAME);	
 			fs::remove(FILE_NAME);

@@ -19,6 +19,3 @@ logging::Devices& logging::devices() {
   return d; 
 }
 
-void logging::unregisterAllDevices() {
-  devices().clear();
-}
