@@ -42,6 +42,16 @@ BOOST_FIXTURE_TEST_CASE(test_logging_registers_device, FileFixture) {
 	BOOST_CHECK(not (registerDevice(FILE_NAME))); // NOTE: Duplicate
 }
 
+BOOST_AUTO_TEST_CASE(test_logging_registers_multiple_devices_and_unregister_them) {
+	BOOST_CHECK(devices().size() == 0);
+	registerDevices(std::cout, std::cerr, "test.txt");
+	BOOST_CHECK(devices().size() == 3);
+	unregisterDevices(std::cerr, "test.txt");
+	BOOST_CHECK(devices().size() == 1);
+	unregisterDevices(std::cout);
+	BOOST_CHECK(devices().size() == 0);
+}
+
 BOOST_FIXTURE_TEST_CASE(test_logging_unregisters_device, FileFixture) {
 	BOOST_CHECK(registerDevice(std::cout));
 	BOOST_CHECK(exists(std::cout));
