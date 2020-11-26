@@ -3,6 +3,8 @@
 
 #include <string>
 #include <filesystem>
+#include <algorithm>
+#include <iterator>
 
 #include "../../core/logging.h"
 #include "../../core/device_generator.h"
@@ -20,12 +22,17 @@ struct FileFixture {
 			fs::remove(FILE_NAME);
 		}
 	}
-};
 
+	std::string load(const std::string& path) {
+    std::ifstream file(path);
+    return std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	}
+};
 
 BOOST_AUTO_TEST_CASE(test_logging_builds_message) {
 	auto msg = buildMsg(Level::INFO, "Test Message");	
-	BOOST_CHECK(msg.length() > 0);	
+	BOOST_CHECK(msg.find("INFO") != std::string::npos);
+	BOOST_CHECK(msg.find("Test Message") != std::string::npos);	
 }
 
 BOOST_FIXTURE_TEST_CASE(test_logging_registers_device, FileFixture) {
@@ -54,4 +61,5 @@ BOOST_FIXTURE_TEST_CASE(test_logging_finds_exists_device, FileFixture) {
 	BOOST_CHECK(devices().size() > 0);
 	BOOST_CHECK(exists(FILE_NAME));
 	BOOST_CHECK(not exists(std::cout));
+	BOOST_CHECK(not exists("i_do_not_exist.txt"));
 }

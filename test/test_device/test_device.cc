@@ -15,11 +15,12 @@ BOOST_AUTO_TEST_CASE(test_device_data_equality_operator) {
 	BOOST_CHECK(d1 != d3);
 }
 
-BOOST_AUTO_TEST_CASE(test_device_transfer_data_to_cout) {
+BOOST_AUTO_TEST_CASE(test_device_transfer_data_to_outupt) {
 	Device<std::ostream> d(std::cerr);
 	BOOST_CHECK(d.getLocation() == "cerr");
 	std::cerr.clear();
 	d << "test message";
+	BOOST_CHECK(std::cerr.good());
 	BOOST_CHECK(bool(std::cerr));	
 }
 
