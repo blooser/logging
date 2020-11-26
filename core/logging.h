@@ -11,6 +11,7 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
+#include <initializer_list>
 
 namespace logging {
 
@@ -41,6 +42,11 @@ bool registerDevice(const Flow& flow) {
 	return true;	
 }
 
+template <typename... Flows>
+void registerDevices(const Flows&... flows) {
+	(registerDevice(flows), ...);
+}
+
 template <typename Flow>
 bool unregisterDevice(const Flow& flow) {
 	if (not exists(flow)) {
@@ -50,6 +56,11 @@ bool unregisterDevice(const Flow& flow) {
 	auto device = findDevice(flow);
 	devices().erase(device);
 	return true;
+}
+
+template <typename ...Flows>
+void unregisterDevices(const Flows&... flows) {
+	(unregisterDevice(flows), ...);
 }
 
 void unregisterAllDevices();
