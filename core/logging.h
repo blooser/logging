@@ -60,6 +60,11 @@ bool unregisterDevice(const Flow& flow) {
 
 template <typename ...Flows>
 void unregisterDevices(const Flows&... flows) {
+	if (not sizeof...(Flows)) {
+		devices().clear();
+		return;
+	}
+
 	(unregisterDevice(flows), ...);
 }
 

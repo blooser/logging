@@ -52,6 +52,14 @@ BOOST_AUTO_TEST_CASE(test_logging_registers_multiple_devices_and_unregister_them
 	BOOST_CHECK(devices().size() == 0);
 }
 
+BOOST_AUTO_TEST_CASE(test_logging_unregisters_all_devices_if_no_arguments_in_unregister_method) {
+	BOOST_CHECK(devices().size() == 0);
+	registerDevices(std::cout, "hello.txt", "test.txt", std::cerr);
+	BOOST_CHECK(devices().size() == 4);
+	unregisterDevices();
+	BOOST_CHECK(devices().size() == 0);
+}
+
 BOOST_FIXTURE_TEST_CASE(test_logging_unregisters_device, FileFixture) {
 	BOOST_CHECK(registerDevice(std::cout));
 	BOOST_CHECK(exists(std::cout));
