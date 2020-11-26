@@ -54,7 +54,7 @@ bool unregisterDevice(const Flow& flow) {
 
 void unregisterAllDevices();
 
-void log(std::ostream &os, Level level, const char* msg);
+void log(Level level, const char* msg);
 
 std::string buildMsg(Level level, const char* msg);
 

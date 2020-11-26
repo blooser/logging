@@ -14,8 +14,9 @@ namespace logging {
 class DeviceData {
 	public:
 		DeviceData(const std::string &_location);
+		virtual ~DeviceData() {};
 
-		virtual std::ostream& getStream() = 0;
+		virtual void write(const std::string& msg) = 0;
 		std::string getLocation() const;
 		
 		bool operator==(const DeviceData& other) {
@@ -27,7 +28,7 @@ class DeviceData {
 		}
 
 		inline void operator<<(const std::string& msg) {
-			getStream() << msg;
+			write(msg);	
 		};
 
 		friend std::ostream& operator<<(std::ostream& os, const DeviceData& device) {
@@ -42,17 +43,17 @@ class DeviceData {
 template <typename Flow>
 class Device : public DeviceData {
 	public:
-		Device(Flow flow) : stream(flow), DeviceData(flow) {
-			
+		Device(const Flow& flow) : stream(flow, std::ios::app), DeviceData(flow) {
+
 		}
 		
 		~Device() {
 			stream.close();		
 		}
 
-		std::ostream& getStream() {
-			return stream;
-		}
+	void write(const std::string& msg) override {
+		stream << msg;
+	}
 
 	private:
 		std::ofstream stream;
@@ -65,9 +66,9 @@ class Device<std::ostream> : public DeviceData {
 			
 		}
 		
-		std::ostream& getStream(){
-			return stream;
-		}
+	void write(const std::string& msg) override {
+		stream << msg;
+	}	
 
 	private:
 		std::ostream &stream;
