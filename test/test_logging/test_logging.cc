@@ -74,6 +74,31 @@ BOOST_FIXTURE_TEST_CASE(test_logging_returns_device_if_found, FileFixture) {
 	BOOST_CHECK(device != devices().end());
 }
 
+BOOST_FIXTURE_TEST_CASE(test_logging_registers_and_unregisters_ofstream, FileFixture) {
+	std::ofstream file(FILE_NAME);
+	BOOST_CHECK(file.is_open());
+	registerDevice(&file);
+	BOOST_CHECK(devices().size());
+	log(Level::WARN, "This is warn");
+	unregisterDevices(&file);
+	BOOST_CHECK(not devices().size());
+}
+
+BOOST_AUTO_TEST_CASE(test_logging_pointer_equality_operator) {
+	unregisterDevices();
+	BOOST_CHECK(not devices().size());	
+
+	std::ofstream os1;
+	std::ofstream os2;
+
+	registerDevices(&os1, &os2);
+	BOOST_CHECK(devices().size() == 2);
+	unregisterDevice(&os2);
+	BOOST_CHECK(devices().size() == 1);
+	unregisterDevice(&os1);
+	BOOST_CHECK(devices().size() == 0);
+}
+
 BOOST_FIXTURE_TEST_CASE(test_logging_finds_exists_device, FileFixture) {
 	registerDevice(FILE_NAME);
 	BOOST_CHECK(devices().size() > 0);
