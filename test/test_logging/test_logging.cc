@@ -30,7 +30,7 @@ struct FileFixture {
 };
 
 BOOST_AUTO_TEST_CASE(test_logging_builds_message) {
-	auto msg = buildMsg(Level::INFO, "Test Message");	
+	auto msg = MessageBuilder("Test Message").build(Level::INFO); 
 	BOOST_CHECK(msg.find("INFO") != std::string::npos);
 	BOOST_CHECK(msg.find("Test Message") != std::string::npos);	
 }
