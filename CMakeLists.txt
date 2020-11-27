@@ -17,7 +17,11 @@ set (CORE_FILES
 	core/device_util.cc
 )
 
+set (STRINGS_FILES
+	strings/strings.h
+)
+
 enable_testing()
 add_subdirectory (test)
 
-add_library (logging SHARED ${CORE_FILES})
+add_library (logging SHARED ${CORE_FILES} ${STRINGS_FILES})
