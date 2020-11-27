@@ -36,3 +36,11 @@ BOOST_AUTO_TEST_CASE(test_device_transfer_data_to_outupt) {
 	BOOST_CHECK(bool(std::cerr));	
 }
 
+BOOST_AUTO_TEST_CASE(test_device_sets_to_corrupted_if_pointer_is_a_nullptr_and_try_to_write) {
+	std::ofstream* file = new std::ofstream;
+	Device<std::ofstream*> d(file);
+	BOOST_CHECK(not d.isCorrupted());
+	delete file;
+	d << "test msg";
+	BOOST_CHECK(d.isCorrupted());
+}
