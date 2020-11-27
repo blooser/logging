@@ -71,7 +71,16 @@ void unregisterDevices(const Flows&... flows) {
 
 void log(Level level, const char* msg);
 
-std::string buildMsg(Level level, const char* msg);
+struct MessageBuilder {
+	MessageBuilder(const char* msg) : message(msg) {}
+
+	std::string build(Level level); 
+
+	private:
+		const char* message;
+		static const std::string SEPARATOR;
+		static const std::string NEW_LINE;
+};
 
 }
 
