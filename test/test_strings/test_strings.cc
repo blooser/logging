@@ -13,3 +13,9 @@ BOOST_AUTO_TEST_CASE(test_strings_converts_pointer_address_to_string) {
 	BOOST_CHECK(address.length());
 	BOOST_CHECK(address == "0x44ff80");
 }
+
+BOOST_AUTO_TEST_CASE(test_strings_join_strings) {
+	auto result = join("hello", ", ", "world", "!");	
+	BOOST_CHECK(result.length());
+	BOOST_CHECK(result == "hello, world!");
+}
