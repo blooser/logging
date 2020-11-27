@@ -1,5 +1,6 @@
 #include "logging.h"
-#include "device_generator.h"
+
+#include "../strings/strings.h"
 
 #define SEPARATOR "  -  "
 
@@ -11,7 +12,7 @@ void logging::log(Level level, const char* msg) {
 }
 
 std::string logging::buildMsg(Level level, const char *msg) {
-  return logging::levelToStr(level) + SEPARATOR + msg + "\n";  
+  return logging::strings::join(logging::levelToStr(level), SEPARATOR, msg, "\n");  
 }
 
 logging::Devices& logging::devices() {

@@ -1,3 +1,6 @@
+#ifndef STRINGS_H
+#define STRINGS_H
+
 #include <sstream>
 #include <string>
 
@@ -12,6 +15,13 @@ std::string ptrAddressToStr(Ptr* ptr) {
 	return ss.str();
 }
 
+template <typename ...Strings>
+std::string join(const std::string& str,  Strings ...strings) {
+	return (str + ... + std::string(strings));		
 }
 
 }
+
+}
+
+#endif
