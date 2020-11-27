@@ -49,11 +49,12 @@ void registerDevices(const Flows&... flows) {
 
 template <typename Flow>
 bool unregisterDevice(const Flow& flow) {
-	if (not exists(flow)) {
+	auto device = findDevice(flow);
+
+	if (device == devices().end()) {
 		return false;
 	}
 
-	auto device = findDevice(flow);
 	devices().erase(device);
 	return true;
 }

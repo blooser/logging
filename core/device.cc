@@ -1,11 +1,11 @@
 #include "device.h"
 
-logging::DeviceData::DeviceData(const std::string &_location) 
-  : location(_location) {
+logging::DeviceData::DeviceData(const std::string &_name) 
+  : name(_name) {
 
 }
 
-std::string logging::DeviceData::getLocation() const {
-  return location;
+std::string logging::DeviceData::getName() const {
+  return name;
 }
  

@@ -2,6 +2,7 @@
 #define DEVICE_H
 
 #include "device_util.h"
+#include "../strings/strings.h"
 
 #include <iostream>
 #include <string>
@@ -13,18 +14,18 @@ namespace logging {
 
 class DeviceData {
 	public:
-		DeviceData(const std::string &_location);
+		DeviceData(const std::string &_name);
 		virtual ~DeviceData() {};
 
 		virtual void write(const std::string& msg) = 0;
-		std::string getLocation() const;
+		std::string getName() const;
 		
 		bool operator==(const DeviceData& other) {
-			return (location == other.location);
+			return (name == other.name);
 		};
 
 		bool operator!=(const DeviceData& other) {
-			return !(location == other.location);
+			return !(*this == other);
 		}
 
 		inline void operator<<(const std::string& msg) {
@@ -32,11 +33,11 @@ class DeviceData {
 		};
 
 		friend std::ostream& operator<<(std::ostream& os, const DeviceData& device) {
-			return os << "Device [" << device.location << "]";
+			return os << "Device [" << device.name << "]";
 		}
 
 	private:
-		std::string location;
+		std::string name;
 };
 
 
@@ -72,6 +73,30 @@ class Device<std::ostream> : public DeviceData {
 
 	private:
 		std::ostream &stream;
+};
+
+template <>
+class Device<std::ofstream*> : public DeviceData {
+	public:
+		// NOTE: DeviceData's Constructor is before the Device's constructor 
+		Device(std::ofstream* os) : stream(os), DeviceData("ofstream at " + strings::ptrAddressToStr(os)) {
+
+		}
+
+		~Device() {
+			
+		}
+
+		void write(const std::string& msg) override {
+			if (not stream or not stream->is_open()) {
+				return;
+			}
+
+			(*stream) << msg;
+		}
+
+	private:
+		std::ofstream* stream;
 };
 
 }
