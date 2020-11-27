@@ -7,7 +7,6 @@ set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set (CORE_FILES
 	core/level.h
-	core/level.cc
 	core/logging.h
 	core/logging.cc
 	core/device.h
