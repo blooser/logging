@@ -98,7 +98,7 @@ class Device<std::ostream> : public DeviceData {
 	}	
 
 	private:
-		std::ostream &stream;
+		std::ostream& stream;
 };
 
 }
