@@ -3,7 +3,7 @@
 
 namespace logging {
 
-enum class FilterLevel {
+enum class Filter {
 	INFO_ONLY,
 	WARN_ONLY,
 	ERROR_ONLY,
@@ -12,7 +12,7 @@ enum class FilterLevel {
 	ALL	
 };
 
-extern FilterLevel filter;
+extern Filter filter;
 
 };
 

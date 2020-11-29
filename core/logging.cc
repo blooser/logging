@@ -4,7 +4,7 @@
 #include "filter.h"
 
 void logging::log(Level level, const char* msg) {
-  if (static_cast<int>(level) != static_cast<int>(filter) and filter != FilterLevel::ALL) {
+  if (static_cast<int>(level) != static_cast<int>(filter) and filter != Filter::ALL) {
     return;
   } 
 

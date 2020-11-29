@@ -64,7 +64,7 @@ class Device : public DeviceData {
 		std::ofstream stream;
 };
 
-template <typename Flow>
+template <typename Flow> 
 class Device<Flow*> : public DeviceData {
 	public:
 		Device(Flow* flow) : stream{flow}, DeviceData(strings::ptrAddressToStr(flow)) {
@@ -89,7 +89,7 @@ class Device<Flow*> : public DeviceData {
 template <>
 class Device<std::ostream> : public DeviceData {
 	public:
-		Device(std::ostream &os) : stream(os), DeviceData(ostreamDeviceName(os)) {
+		Device(std::ostream &os) : stream{os}, DeviceData(ostreamDeviceName(os)) {
 			
 		}
 		

@@ -2,6 +2,6 @@
 
 namespace logging {
 
-FilterLevel filter = FilterLevel::ALL;
+Filter filter = Filter::ALL;
 
 }

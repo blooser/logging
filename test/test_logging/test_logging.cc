@@ -111,7 +111,7 @@ BOOST_FIXTURE_TEST_CASE(test_logging_finds_exists_device, FileFixture) {
 BOOST_AUTO_TEST_CASE(test_logging_filter) {
 	std::stringstream sstream;
 	registerDevice(&sstream);
-	filter = FilterLevel::WARN_ONLY;
+	filter = Filter::WARN_ONLY;
 	log(Level::FATAL, "This is fatal!");
 	BOOST_CHECK(not sstream.str().length());
 	log(Level::WARN, "This is warn!");
