@@ -7,6 +7,7 @@
 #include <iterator>
 
 #include "../../core/logging.h"
+#include "../../core/filter.h"
 #include "../../core/device_generator.h"
 
 using namespace logging;
@@ -105,4 +106,15 @@ BOOST_FIXTURE_TEST_CASE(test_logging_finds_exists_device, FileFixture) {
 	BOOST_CHECK(exists(FILE_NAME));
 	BOOST_CHECK(not exists(std::cout));
 	BOOST_CHECK(not exists("i_do_not_exist.txt"));
+}
+
+BOOST_AUTO_TEST_CASE(test_logging_filter) {
+	std::stringstream sstream;
+	registerDevice(&sstream);
+	filter = FilterLevel::WARN_ONLY;
+	log(Level::FATAL, "This is fatal!");
+	BOOST_CHECK(not sstream.str().length());
+	log(Level::WARN, "This is warn!");
+	BOOST_CHECK(sstream.str().length());
+	BOOST_CHECK(sstream.str().find("This is warn!") != std::string::npos);
 }
