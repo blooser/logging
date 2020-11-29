@@ -1,9 +1,13 @@
 #include "logging.h"
 
 #include "../strings/strings.h"
+#include "../time/time.h"
+
 #include "filter.h"
 
-void logging::log(Level level, const char* msg) {
+namespace logging {
+
+void log(Level level, const char* msg) {
   if (static_cast<int>(level) != static_cast<int>(filter) and filter != Filter::ALL) {
     return;
   } 
@@ -14,14 +18,18 @@ void logging::log(Level level, const char* msg) {
   }
 }
 
-logging::Devices& logging::devices() {
+Devices& devices() {
   static Devices d;
   return d; 
 }
 
-const std::string logging::MessageBuilder::SEPARATOR = " - ";
-const std::string logging::MessageBuilder::NEW_LINE = "\n";
+const std::string MessageBuilder::SEPARATOR = " - ";
+const std::string MessageBuilder::NEW_LINE = "\n";
 
-std::string logging::MessageBuilder::build(Level level) {
-  return logging::strings::join(logging::LevelCast(level).toString(), SEPARATOR, message, NEW_LINE);  
+std::string MessageBuilder::build(Level level) {
+  return strings::join(LevelCast(level).toString(), SEPARATOR, time::currentTime(), SEPARATOR, message, NEW_LINE);  
+}
+
+
+
 }

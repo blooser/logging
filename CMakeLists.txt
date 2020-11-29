@@ -20,7 +20,12 @@ set (STRINGS_FILES
 	strings/strings.h
 )
 
+set (TIME_FILES
+	time/time.h
+	time/time.cc
+)
+
 enable_testing()
 add_subdirectory (test)
 
-add_library (logging SHARED ${CORE_FILES} ${STRINGS_FILES})
+add_library (logging SHARED ${CORE_FILES} ${STRINGS_FILES} ${TIME_FILES})
