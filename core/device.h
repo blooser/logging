@@ -19,7 +19,6 @@ class DeviceData {
 
 		virtual void write(const std::string& msg) = 0;
 		std::string getName() const;
-		bool isCorrupted() const;		
 
 		bool operator==(const DeviceData& other) {
 			return (name == other.name);
@@ -36,9 +35,6 @@ class DeviceData {
 		friend std::ostream& operator<<(std::ostream& os, const DeviceData& device) {
 			return os << "Device [" << device.name << "]";
 		}
-
-	protected:
-		bool corrupted;
 
 	private:
 		std::string name;
@@ -72,11 +68,6 @@ class Device<Flow*> : public DeviceData {
 		}	
 
 	void write(const std::string& msg) override {	
-			if (not stream) {
-				corrupted = true;
-				return;
-			}
-
 			(*stream) << msg;
 		}
 
