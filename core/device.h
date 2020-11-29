@@ -64,6 +64,28 @@ class Device : public DeviceData {
 		std::ofstream stream;
 };
 
+template <typename Flow>
+class Device<Flow*> : public DeviceData {
+	public:
+		Device(Flow* flow) : stream{flow}, DeviceData(strings::ptrAddressToStr(flow)) {
+
+		}	
+
+	void write(const std::string& msg) override {	
+			if (not stream) {
+				corrupted = true;
+				return;
+			}
+
+			(*stream) << msg;
+		}
+
+
+	private:
+		Flow* stream;
+};
+
+
 template <>
 class Device<std::ostream> : public DeviceData {
 	public:
@@ -77,31 +99,6 @@ class Device<std::ostream> : public DeviceData {
 
 	private:
 		std::ostream &stream;
-};
-
-template <>
-class Device<std::ofstream*> : public DeviceData {
-	public:
-		// NOTE: DeviceData's Constructor is before the Device's constructor 
-		Device(std::ofstream* os) : stream(os), DeviceData("ofstream at " + strings::ptrAddressToStr(os)) {
-
-		}
-
-		~Device() {
-			
-		}
-
-		void write(const std::string& msg) override {
-			if (not stream or not stream->is_open()) {
-				corrupted = true;
-				return;
-			}
-
-			(*stream) << msg;
-		}
-
-	private:
-		std::ofstream* stream;
 };
 
 }
