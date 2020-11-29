@@ -9,6 +9,8 @@ set (TEST_FILES
 	${PROJECT_SOURCE_DIR}/core/level.h
 	${PROJECT_SOURCE_DIR}/core/filter.h
 	${PROJECT_SOURCE_DIR}/core/filter.cc
+	${PROJECT_SOURCE_DIR}/time/time.h
+	${PROJECT_SOURCE_DIR}/time/time.cc
 )
 
 add_executable(test_logging test_logging.cc ${TEST_FILES})

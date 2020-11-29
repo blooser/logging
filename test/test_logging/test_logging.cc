@@ -9,6 +9,7 @@
 #include "../../core/logging.h"
 #include "../../core/filter.h"
 #include "../../core/device_generator.h"
+#include "../../time/time.h"
 
 using namespace logging;
 namespace fs = std::filesystem;
