@@ -82,6 +82,12 @@ struct MessageBuilder {
 		static const std::string NEW_LINE;
 };
 
+#define INFO(msg) logging::log(logging::Level::INFO, msg)
+#define WARN(msg) logging::log(logging::Level::WARN, msg)
+#define ERROR(msg) logging::log(logging::Level::ERROR, msg)
+#define FATAL(msg) logging::log(logging::Level::FATAL, msg)
+#define DEBUG(msg) logging::log(logging::Level::DEBUG, msg)
+
 }
 
 #endif 
