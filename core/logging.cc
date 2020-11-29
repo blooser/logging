@@ -1,8 +1,13 @@
 #include "logging.h"
 
 #include "../strings/strings.h"
+#include "filter.h"
 
 void logging::log(Level level, const char* msg) {
+  if (static_cast<int>(level) != static_cast<int>(filter) and filter != FilterLevel::ALL) {
+    return;
+  } 
+
   std::string log_msg = MessageBuilder(msg).build(level); 
   for (auto& device : devices()) { 
     (*device) << log_msg;
