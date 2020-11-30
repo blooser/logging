@@ -25,7 +25,11 @@ set (TIME_FILES
 	time/time.cc
 )
 
+set (TYPES_FILES
+	types/types.h
+)
+
 enable_testing()
 add_subdirectory (test)
 
-add_library (logging SHARED ${CORE_FILES} ${STRINGS_FILES} ${TIME_FILES})
+add_library (logging SHARED ${CORE_FILES} ${STRINGS_FILES} ${TIME_FILES} ${TYPES_FILES})
