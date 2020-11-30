@@ -44,10 +44,10 @@ class DeviceData {
 
 template <typename Flow>
 class Device : public DeviceData {
+	static_assert(types::is_string_like<Flow>(), "Not a string like");				
+	
 	public:
-		Device(const Flow& flow) : stream(flow, std::ios::app), DeviceData(flow) {	
-			static_assert(types::is_string_like<Flow>(), "Not a string like");				
-		}
+		Device(const Flow& flow) : stream(flow, std::ios::app), DeviceData(flow) {}
 		
 		~Device() {
 			stream.close();		
@@ -63,10 +63,10 @@ class Device : public DeviceData {
 
 template <typename Flow> 
 class Device<Flow*> : public DeviceData {
+	static_assert(types::is_streamable<Flow, const std::string&>::value, "Type is not streamable");
+
 	public:
-		Device(Flow* flow) : stream{flow}, DeviceData(strings::ptrAddressToStr(flow)) {
-			static_assert(types::is_streamable<Flow, const std::string&>::value, "Type is not streamable");
-		}	
+		Device(Flow* flow) : stream{flow}, DeviceData(strings::ptrAddressToStr(flow)) {}	
 
 	void write(const std::string& msg) override {	
 			(*stream) << msg;
