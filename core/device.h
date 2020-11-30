@@ -3,7 +3,8 @@
 
 #include "device_util.h"
 #include "../strings/strings.h"
-
+#include "../types/types.h"
+#include <boost/type_index.hpp>
 #include <iostream>
 #include <string>
 #include <type_traits>
@@ -44,8 +45,8 @@ class DeviceData {
 template <typename Flow>
 class Device : public DeviceData {
 	public:
-		Device(const Flow& flow) : stream(flow, std::ios::app), DeviceData(flow) {
-
+		Device(const Flow& flow) : stream(flow, std::ios::app), DeviceData(flow) {	
+			static_assert(types::is_string_like<Flow>(), "Not a string like");				
 		}
 		
 		~Device() {
@@ -64,7 +65,7 @@ template <typename Flow>
 class Device<Flow*> : public DeviceData {
 	public:
 		Device(Flow* flow) : stream{flow}, DeviceData(strings::ptrAddressToStr(flow)) {
-
+			static_assert(types::is_streamable<Flow, const std::string&>::value, "Type is not streamable");
 		}	
 
 	void write(const std::string& msg) override {	
@@ -81,8 +82,8 @@ template <>
 class Device<std::ostream> : public DeviceData {
 	public:
 		Device(std::ostream &os) : stream{os}, DeviceData(ostreamDeviceName(os)) {
-			
-		}
+
+	}
 		
 	void write(const std::string& msg) override {
 		stream << msg;
