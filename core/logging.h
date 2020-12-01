@@ -18,6 +18,7 @@ namespace logging {
 using Devices = std::vector<std::unique_ptr<DeviceData>>;
 Devices& devices();
 
+static const std::string DEFAULT_MESSAGE_FORMAT = "%t - %m";
 extern std::string MESSAGE_FORMAT;
 
 template <typename Flow>
@@ -84,8 +85,6 @@ struct MessageBuilder {
 		static const std::string SEPARATOR;
 		static const std::string NEW_LINE;
 };
-
-#define DEFAULT_MESSAGE_FORMAT "%t - %m"
 
 #define INFO(msg) logging::log(logging::Level::INFO, msg)
 #define WARN(msg) logging::log(logging::Level::WARN, msg)
