@@ -119,3 +119,11 @@ BOOST_AUTO_TEST_CASE(test_logging_filter) {
 	BOOST_CHECK(sstream.str().length());
 	BOOST_CHECK(sstream.str().find("This is warn!") != std::string::npos);
 }
+
+BOOST_AUTO_TEST_CASE(test_logging_messagebuilder_translates_format) {
+	std::string format = "Hello%m!";
+	BOOST_CHECK(MessageBuilder(", World").formatTranslate(format) == "Hello, World!");
+
+	format = "Hello%c%w%m";
+	BOOST_CHECK(MessageBuilder(", World!").formatTranslate(format) == "Hello, World!");
+}
