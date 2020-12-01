@@ -18,6 +18,8 @@ namespace logging {
 using Devices = std::vector<std::unique_ptr<DeviceData>>;
 Devices& devices();
 
+extern std::string MESSAGE_FORMAT;
+
 template <typename Flow>
 Devices::iterator findDevice(const Flow& flow) {
 	auto device = std::unique_ptr<DeviceData>(DeviceGenerator<Flow>::generate(flow));
@@ -75,12 +77,15 @@ struct MessageBuilder {
 	MessageBuilder(const char* msg) : message(msg) {}
 
 	std::string build(Level level); 
+	std::string formatTranslate(const std::string& format);
 
 	private:
 		const char* message;
 		static const std::string SEPARATOR;
 		static const std::string NEW_LINE;
 };
+
+#define DEFAULT_MESSAGE_FORMAT "%t - %m"
 
 #define INFO(msg) logging::log(logging::Level::INFO, msg)
 #define WARN(msg) logging::log(logging::Level::WARN, msg)
