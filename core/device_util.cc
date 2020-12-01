@@ -2,7 +2,9 @@
 
 #include <iostream>
 
-std::string logging::ostreamDeviceName(const std::ostream& os) {
+namespace logging {
+
+std::string ostreamDeviceName(const std::ostream& os) {
 	if (&os == &std::cout) {
 		return "cout";
 	} else if (&os == &std::cerr) {
@@ -12,4 +14,6 @@ std::string logging::ostreamDeviceName(const std::ostream& os) {
 	} else {
 		return "unknown";
 	}
+}
+
 }
