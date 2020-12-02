@@ -4,10 +4,23 @@
 
 #include <boost/test/included/unit_test.hpp> 
 
-using namespace logging;
+#include <filesystem>
 
-BOOST_AUTO_TEST_CASE(test_device_generator_generates_device) {
-	auto d1 = DeviceGenerator<std::string>::generate("test.txt");
+using namespace logging;
+namespace fs = std::filesystem;
+
+struct FileFixture {
+	std::string FILE_NAME = "test.txt";
+
+	~FileFixture() {
+		if (fs::exists(FILE_NAME)) {
+			fs::remove(FILE_NAME);
+		}	
+	}
+};
+
+BOOST_FIXTURE_TEST_CASE(test_device_generator_generates_device, FileFixture) {
+	auto d1 = DeviceGenerator<std::string>::generate(FILE_NAME);
 	BOOST_CHECK(typeid(*d1) == typeid(Device<std::string>));
 	delete d1;
 

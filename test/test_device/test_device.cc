@@ -4,7 +4,29 @@
 
 #include <boost/test/included/unit_test.hpp> 
 
+#include <vector>
+#include <string>
+#include <filesystem>
+
 using namespace logging;
+namespace fs = std::filesystem;
+
+struct FileFixture {
+	std::vector<std::string> files;
+
+	~FileFixture() {
+		for (const auto& file : files) {	
+			fs::remove(file);
+		}
+	}
+
+	void generateFiles(const int n=5) {
+		for (int i=0; i<n; ++i) {
+			files.push_back("file" + std::to_string(i) + ".txt");
+		}
+	}
+};
+
 
 BOOST_AUTO_TEST_CASE(test_device_data_equality_operator) {
 	Device<std::ostream> d1(std::cout);
@@ -15,9 +37,10 @@ BOOST_AUTO_TEST_CASE(test_device_data_equality_operator) {
 	BOOST_CHECK(d1 != d3);
 }
 
-BOOST_AUTO_TEST_CASE(test_device_pointer_equality_operator) {
-	std::ofstream file1("test.txt");
-	std::ofstream file2("another_test.txt");
+BOOST_FIXTURE_TEST_CASE(test_device_pointer_equality_operator, FileFixture) {
+	generateFiles(2);
+	std::ofstream file1(files.at(0));
+	std::ofstream file2(files.at(1));
 	Device<std::ofstream*> d1(&file1);
 	Device<std::ofstream*> d2(&file2);
 	Device<std::ofstream*> d11(&file1);
