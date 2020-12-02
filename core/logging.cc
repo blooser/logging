@@ -21,6 +21,18 @@ void log(Level level, const char* msg) {
   }
 }
 
+void printDevices() {
+  int i = 0;
+  for (const auto& device : devices()) {
+    std::cout << *device << " ";
+    ++i;
+
+    if (i % 5 == 0) {
+      std::cout << "\n";
+    }
+  }
+}
+
 Devices& devices() {
   static Devices d;
   return d; 

@@ -73,6 +73,7 @@ void unregisterDevices(const Flows&... flows) {
 }
 
 void log(Level level, const char* msg);
+void printDevices();
 
 struct MessageBuilder {
 	MessageBuilder(const char* msg) : message(msg) {}
