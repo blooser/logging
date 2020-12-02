@@ -1,9 +1,11 @@
 #ifndef DEVICE_H
 #define DEVICE_H
 
-#include "device_util.h"
 #include "../strings/strings.h"
 #include "../types/types.h"
+
+#include "device_util.h"
+
 #include <boost/type_index.hpp>
 #include <iostream>
 #include <string>
@@ -44,7 +46,7 @@ class DeviceData {
 
 template <typename Flow>
 class Device : public DeviceData {
-	static_assert(types::is_string_like<Flow>(), "Not a string like");				
+	static_assert(types::is_string_like<Flow>(), "Type is not a string like");				
 	
 	public:
 		Device(const Flow& flow) : stream(flow, std::ios::app), DeviceData(flow) {}
