@@ -1,8 +1,8 @@
 set (TEST_FILES
-	${PROJECT_SOURCE_DIR}/core/device.h
-	${PROJECT_SOURCE_DIR}/core/device.cc
-	${PROJECT_SOURCE_DIR}/core/device_util.h
-	${PROJECT_SOURCE_DIR}/core/device_util.cc
+    ${PROJECT_SOURCE_DIR}/core/device.h
+    ${PROJECT_SOURCE_DIR}/core/device.cc
+    ${PROJECT_SOURCE_DIR}/core/device_util.h
+    ${PROJECT_SOURCE_DIR}/core/device_util.cc
 )
 
 add_executable (test_device test_device.cc ${TEST_FILES})

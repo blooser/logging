@@ -11,9 +11,9 @@ A example of usage
 #include "logging.h"
 
 int main(void) {
-	logging::registerDevices(std::cout, "log.txt"); // Log to cout and log.txt text file
-	// ...
-	INFO("This is a info log message"); // Log with info severity
+    logging::registerDevices(std::cout, "log.txt"); // Log to cout and log.txt text file
+    // ...
+    INFO("This is a info log message"); // Log with info severity
 }
 
 ```

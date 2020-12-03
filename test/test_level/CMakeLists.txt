@@ -1,5 +1,5 @@
 set (TEST_FILES
-	${PROJECT_SOURCE_DIR}/core/level.h
+    ${PROJECT_SOURCE_DIR}/core/level.h
 )
 
 add_executable (test_level test_level.cc ${TEST_FILES})

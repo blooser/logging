@@ -6,27 +6,27 @@ set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set (CORE_FILES
-	core/level.h
-	core/logging.h
-	core/logging.cc
-	core/device.h
-	core/device.cc
-	core/device_generator.h
-	core/device_util.h
-	core/device_util.cc
+    core/level.h
+    core/logging.h
+    core/logging.cc
+    core/device.h
+    core/device.cc
+    core/device_generator.h
+    core/device_util.h
+    core/device_util.cc
 )
 
 set (STRINGS_FILES
-	strings/strings.h
+    strings/strings.h
 )
 
 set (TIME_FILES
-	time/time.h
-	time/time.cc
+    time/time.h
+    time/time.cc
 )
 
 set (TYPES_FILES
-	types/types.h
+    types/types.h
 )
 
 enable_testing()

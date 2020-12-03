@@ -1,5 +1,5 @@
 set (TEST_FILES
-	${PROJECT_SOURCE_DIR}/types/types.h
+    ${PROJECT_SOURCE_DIR}/types/types.h
 )
 
 add_executable (test_types test_types.cc ${TEST_FILES})
