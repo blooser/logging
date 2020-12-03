@@ -16,14 +16,14 @@ struct is_streamable<T, S, std::void_t<decltype(std::declval<T&>() << std::declv
 
 template <typename T>
 constexpr bool is_string_like() {
-	using TT = typename std::remove_const<T>::type;	
+    using TT = typename std::remove_const<T>::type;	
 
-	if (std::is_array<TT>::value) {
-		return std::is_same<TT, char[sizeof(TT)]>::value;
-	}
+    if (std::is_array<TT>::value) {
+        return std::is_same<TT, char[sizeof(TT)]>::value;
+    }
 
-	return std::is_same<TT, char*>::value or std::is_same<TT, std::string&>::value or
-				 std::is_same<TT, std::string>::value;
+    return std::is_same<TT, char*>::value or std::is_same<TT, std::string&>::value or
+                 std::is_same<TT, std::string>::value;
 
 }
 

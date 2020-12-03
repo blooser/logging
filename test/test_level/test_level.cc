@@ -7,5 +7,5 @@
 using namespace logging;
 
 BOOST_AUTO_TEST_CASE(test_levelcast_cast_to_string) {
-	BOOST_CHECK(LevelCast(Level::INFO).toString() == "INFO");		
+    BOOST_CHECK(LevelCast(Level::INFO).toString() == "INFO");		
 }

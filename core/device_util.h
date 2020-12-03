@@ -5,7 +5,7 @@
 #include <string>
 
 namespace logging {
-	
+    
 std::string ostreamDeviceName(const std::ostream& os);
 
 }

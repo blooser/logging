@@ -4,12 +4,12 @@
 namespace logging {
 
 enum class Filter {
-	INFO_ONLY,
-	WARN_ONLY,
-	ERROR_ONLY,
-	FATAL_ONLY,
-	DBUG_ONLY,	
-	ALL	
+    INFO_ONLY,
+    WARN_ONLY,
+    ERROR_ONLY,
+    FATAL_ONLY,
+    DBUG_ONLY,	
+    ALL	
 };
 
 extern Filter filter;
