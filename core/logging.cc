@@ -58,8 +58,8 @@ std::string MessageBuilder::formatTranslate(const std::string& format) {
         case 'm':
           output << message;
           break;
-        default:
-          std::cerr << "Incorrect format parameter: " << *it << NEW_LINE; 
+        default:;
+          // NOTE: Go on 
       }
       ++it;
       continue;
